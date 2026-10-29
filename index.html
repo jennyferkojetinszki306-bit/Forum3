@@ -1,0 +1,674 @@
+<title>Форум «Деньги. Энергия. Масштаб»</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Международный онлайн бизнес-форум. 14, 15 и 18 ноября, бесплатно. Куда сейчас уходят деньги и как в них зайти, даже без опыта в бизнесе.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Golos+Text:wght@400;500;600;700&display=swap">
+<style>
+/* Устройство по референсу «Титаны России»: тёмная кинематографичная сцена, широкий наклонный заголовок,
+   плашки с именами, кнопки-капсулы, стеклянная шапка, бегущая строка, нумерованные карточки, блок-приглашение с видео.
+   Цвета свои: винно-чёрная сцена, красный форума и золото вместо фиолетового. Единая тёмная тема по выбору. */
+:root{
+  color-scheme: dark;
+  --night:#120709; --stage:#1A0B0F; --card:#241015; --card-2:#2E141B; --line:rgba(255,235,225,.12);
+  --text:#F6EEE9; --muted:#C9B4AE; --soft:#9C847E;
+  --red:#C8262D; --red-hi:#E0343B; --red-deep:#8E1C1F;
+  --gold:#E3C07A; --gold-deep:#B88A3B;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Golos Text","Segoe UI",system-ui,sans-serif;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  --wrap:1240px;
+  --pill:999px; --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--night)}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:900;line-height:1.02;text-wrap:balance}
+.wrap{max-width:var(--wrap);margin:0 auto}
+.band{padding-left:var(--gut);padding-right:var(--gut-r)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* наклонный широкий заголовок — главный приём референса */
+.tt{font-family:var(--f-display);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-style:normal;display:inline-block;transform:skewX(-11deg);background:linear-gradient(180deg,#FFFFFF 0%,#F2E4DE 55%,#CDB5AE 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tt .hl{background:linear-gradient(180deg,var(--red-hi),var(--red-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tt .gd{background:linear-gradient(180deg,#F6DFA6,var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-title{font-size:clamp(30px,5.2vw,64px);text-align:center;display:block;margin-inline:auto;max-width:18ch}
+.sec-title .tt{display:inline}
+
+/* капсулы */
+.pill{display:flex;align-items:center;justify-content:center;gap:14px;min-height:64px;padding:0 34px;border-radius:var(--pill);text-decoration:none;font-family:var(--f-body);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.pill svg{width:12px;height:20px;flex:0 0 auto}
+.pill-main{background:linear-gradient(100deg,var(--red-deep) 0%,var(--red) 45%,var(--red-hi) 100%);color:#FFFFFF;box-shadow:0 10px 40px rgba(200,38,45,.35)}
+.pill-main:hover{transform:translateY(-2px);box-shadow:0 14px 48px rgba(224,52,59,.5)}
+.pill-main:active{transform:none}
+.pill-dark{background:var(--card-2);color:var(--text)}
+.pill-dark:hover{background:#3a1a22}
+.pill[disabled]{opacity:.6;cursor:wait;transform:none}
+
+/* стеклянная шапка */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;padding:12px var(--gut-r) 0 var(--gut)}
+.top-in{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 18px;border-radius:var(--pill);background:rgba(26,11,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line)}
+.top-in img{display:block;height:46px;width:auto}
+.top nav{display:flex;gap:26px;font-size:15px;color:var(--muted)}
+.top nav a{text-decoration:none}
+.top nav a:hover{color:var(--text)}
+.top .pill{min-height:48px;padding:0 22px;font-size:14px}
+
+/* 1. Первый экран */
+.hero{position:relative;overflow:hidden;margin-top:-82px;padding-top:112px;background:
+  radial-gradient(70% 60% at 50% 38%,rgba(200,38,45,.30),transparent 70%),
+  radial-gradient(40% 40% at 85% 10%,rgba(227,192,122,.10),transparent 70%),var(--night)}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:260px;background:linear-gradient(transparent,var(--night));pointer-events:none;z-index:2}
+.hero-title{position:relative;z-index:3;text-align:center;padding-top:26px}
+.hero-title h1{font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.88;font-size:clamp(46px,10.4vw,150px)}
+.hero-title h1 .tt{display:block}
+.ribbon{position:relative;z-index:4;display:inline-block;margin:-.15em auto .1em;transform:skewX(-14deg);background:linear-gradient(90deg,var(--red-deep),var(--red));padding:9px 26px}
+.ribbon span{display:block;transform:skewX(14deg);font-weight:700;font-size:clamp(12px,1.5vw,19px);letter-spacing:.06em;text-transform:uppercase;color:#FFFFFF}
+.hero-stage{position:relative;z-index:1;display:grid;grid-template-columns:1fr minmax(0,520px) 1fr;align-items:end;margin-top:-30px}
+.hero-photo{grid-column:2;position:relative}
+.hero-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;-webkit-mask-image:linear-gradient(#000 62%,transparent 98%);mask-image:linear-gradient(#000 62%,transparent 98%)}
+.ring{position:absolute;left:50%;top:44%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(227,192,122,.25);box-shadow:0 0 0 60px rgba(227,192,122,.03),inset 0 0 120px rgba(200,38,45,.25);pointer-events:none}
+.hero-side{position:relative;z-index:3;display:flex;flex-direction:column;gap:14px;align-self:center;padding-bottom:40px}
+.hero-side.l{align-items:flex-end;text-align:right;padding-right:28px}
+.hero-side.r{padding-left:28px}
+.hero-side b{font-family:var(--f-display);font-weight:900;font-size:clamp(24px,3vw,40px);line-height:1;color:var(--gold)}
+.hero-side span{font-size:14px;color:var(--muted);max-width:18ch}
+.hero-bottom{position:relative;z-index:3;margin-top:-150px;padding-bottom:40px}
+.tags{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;max-width:760px;margin:0 auto}
+.tag{transform:skewX(-14deg);background:linear-gradient(90deg,var(--red-deep),var(--red));padding:10px 18px;text-align:center}
+.tag span{display:block;transform:skewX(14deg);font-family:var(--f-display);font-weight:600;font-size:clamp(13px,1.5vw,18px);color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag.q{background:linear-gradient(90deg,#6E5A24,var(--gold-deep))}
+.hero-btns{display:grid;gap:14px;max-width:760px;margin:26px auto 0}
+.hero-note{margin-top:14px;text-align:center;font-size:14px;color:var(--soft)}
+
+/* 2. Бегущая строка */
+.ticker{background:linear-gradient(90deg,var(--red-deep),var(--red),var(--red-deep));overflow:hidden;padding-block:16px}
+.ticker-track{display:flex;width:max-content;animation:tick 34s linear infinite}
+.ticker-track span{font-family:var(--f-display);font-weight:900;font-size:clamp(18px,2.4vw,30px);text-transform:uppercase;white-space:nowrap;padding-right:30px;color:#FFFFFF;transform:skewX(-11deg);display:inline-block}
+.ticker-track i{font-style:normal;color:var(--gold);padding-right:30px;font-size:clamp(18px,2.4vw,30px);line-height:1.3}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* общие секции */
+.sec{padding-block:110px;position:relative}
+.sec.alt{background:var(--stage)}
+.lead{max-width:56ch;margin:26px auto 0;text-align:center;font-size:20px;color:var(--muted)}
+
+/* 3. О форуме */
+.about{position:relative;overflow:hidden;background:radial-gradient(60% 70% at 50% 50%,rgba(200,38,45,.16),transparent 70%),var(--stage)}
+.about-grid{display:grid;grid-template-columns:1fr minmax(0,560px) 1fr;gap:24px;align-items:center}
+.about-ph{position:relative;align-self:stretch;min-height:420px}
+.about-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;border-radius:var(--r);opacity:.85;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.about-ph.r{margin-top:90px}
+.about-txt{text-align:center;display:flex;flex-direction:column;gap:22px;font-size:20px;line-height:1.5}
+.about-txt .em{color:var(--text);font-weight:600}
+.about-txt .pill{margin:12px auto 0;width:min(100%,440px)}
+.about-txt p{color:var(--muted)}
+
+/* 4. Приглашение (видео) */
+.invite .video{position:relative;margin:48px auto 0;max-width:980px;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#000}
+.invite .video img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;opacity:.7;display:block}
+.play{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:#000;border:0;cursor:pointer;display:grid;place-items:center;transition:transform .2s}
+.play:hover{transform:scale(1.06)}
+.play::after{content:"";margin-left:8px;border-left:34px solid #FFFFFF;border-top:21px solid transparent;border-bottom:21px solid transparent}
+.video .cap{position:absolute;left:20px;bottom:18px;font-size:14px;color:#FFFFFF;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:var(--pill)}
+
+/* 5. Узнавание */
+.recog-in{max-width:900px;margin:0 auto;text-align:center}
+.recog-big{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,3.4vw,42px);line-height:1.18}
+.recog-big em{font-style:normal;color:var(--red-hi)}
+.recog-turn{margin:44px auto 0;max-width:640px;display:flex;flex-direction:column;gap:14px;font-size:19px;color:var(--muted)}
+.recog-turn b{font-family:var(--f-display);font-weight:900;font-size:clamp(22px,2.6vw,32px);text-transform:uppercase;display:inline-block;transform:skewX(-11deg);color:var(--gold)}
+
+/* 6. Деньги переходят */
+.road{list-style:none;margin:60px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.road li{background:var(--card);border-radius:var(--r);padding:26px 22px 28px;display:flex;flex-direction:column;gap:8px;position:relative}
+.road .yr{font-size:13px;color:var(--soft);letter-spacing:.04em;text-transform:uppercase}
+.road b{font-family:var(--f-display);font-weight:800;font-size:21px;line-height:1.1;color:var(--gold)}
+.road p{font-size:15px;color:var(--muted)}
+.road li.now{background:linear-gradient(160deg,var(--red-deep),var(--red));}
+.road li.now b{color:#FFFFFF;font-size:23px}
+.road li.now p,.road li.now .yr{color:#FBE3E1}
+.road li:not(:last-child)::after{content:"";position:absolute;right:-12px;top:44px;width:12px;height:2px;background:var(--gold-deep)}
+.shift-say{margin:44px auto 0;max-width:46ch;text-align:center;font-size:21px;color:var(--text);font-weight:500}
+
+/* 7. Почему сейчас */
+.why-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;margin-top:56px}
+.why-num .big{font-family:var(--f-display);font-weight:900;font-size:clamp(120px,17vw,230px);line-height:.8;display:inline-block;transform:skewX(-11deg);background:linear-gradient(180deg,#F6DFA6,var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.why-num .big sup{font-size:.26em;vertical-align:top;margin-left:.12em;-webkit-text-fill-color:var(--red-hi);color:var(--red-hi)}
+.why-num p{font-size:20px;margin-top:24px;max-width:30ch}
+.src{font-size:12px;color:var(--soft);margin-top:12px}
+.why-list{display:flex;flex-direction:column;gap:12px;margin:0}
+.why-list div{background:var(--card);border-radius:var(--r);padding:22px 24px}
+.why-list dt{font-family:var(--f-display);font-weight:800;color:var(--gold);font-size:17px;margin-bottom:6px}
+.why-list dd{margin:0;font-size:15px;color:var(--muted)}
+
+/* 8. Кому подойдёт */
+.who-list{list-style:none;margin:56px auto 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1080px}
+.who-list li{background:var(--card);border-radius:var(--r);padding:34px 34px 36px;display:flex;flex-direction:column;gap:12px}
+.who-list li:last-child{grid-column:1 / -1;background:linear-gradient(120deg,var(--card-2),var(--card))}
+.num{display:grid;place-items:center;width:64px;height:64px;background:var(--red);font-family:var(--f-display);font-weight:800;font-size:24px;color:#FFFFFF;margin-bottom:12px}
+.who-list h3{font-family:var(--f-body);font-weight:700;font-size:28px;line-height:1.15}
+.who-list p{color:var(--gold);font-size:18px;font-weight:500}
+.who-list small{color:var(--muted);font-size:15px}
+
+/* 9. Модель */
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.split > div{background:var(--card);border-radius:var(--r);padding:32px 28px;display:flex;flex-direction:column;gap:14px}
+.split .k{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.split h3{font-family:var(--f-display);font-weight:800;font-size:24px;color:var(--gold)}
+.split ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.split li{padding-left:22px;position:relative;font-size:16px;color:var(--muted)}
+.split li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;background:var(--red);transform:rotate(45deg)}
+.split .you{background:linear-gradient(160deg,var(--red-deep),#5A1216)}
+.split .you h3{color:#FFFFFF}.split .you li{color:#FBE3E1}.split .you li::before{background:var(--gold)}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.path{border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;display:flex;flex-direction:column;gap:8px}
+.path .tg{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--red-hi);font-weight:700}
+.path b{font-family:var(--f-display);font-weight:800;font-size:21px}
+.path p{color:var(--muted);font-size:16px}
+
+/* 10. Заявка между блоками */
+.apply{padding-block:72px;background:linear-gradient(120deg,#2A0C10,#3B1015 50%,#2A0C10)}
+.apply-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center}
+.apply h2{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,3.2vw,40px);text-transform:uppercase;line-height:1.02}
+.apply h2 .tt{display:inline}
+.apply-in > div p{margin-top:14px;color:var(--muted);font-size:17px}
+.apply-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+.fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fld label{font-size:13px;color:var(--muted)}
+.fld input{font:inherit;font-size:16px;color:var(--text);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:16px;padding:16px 18px;min-height:58px;width:100%}
+.fld input::placeholder{color:var(--soft)}
+.fld input:focus{outline:none;border-color:var(--gold)}
+.fld input[aria-invalid="true"]{border-color:var(--red-hi);background:rgba(224,52,59,.12)}
+.apply-form .pill{grid-column:1 / -1;width:100%}
+.agree{grid-column:1 / -1;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--soft);cursor:pointer}
+.agree input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--red);flex:0 0 auto}
+.err{grid-column:1 / -1;color:#FF8A8F;font-size:14px;font-weight:600}
+.done{grid-column:1 / -1;position:absolute;inset:0;background:var(--card-2);border:1px solid var(--gold-deep);border-radius:var(--r);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:22px 26px}
+.done[hidden],.err[hidden]{display:none}
+.done b{font-family:var(--f-display);color:var(--gold);font-size:24px}
+.done span{font-size:15px;color:var(--muted)}
+
+/* 11. Программа */
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.day{background:var(--card);border-radius:var(--r);padding:30px 28px 32px;display:flex;flex-direction:column;gap:12px}
+.day-num{font-family:var(--f-display);font-weight:900;font-size:84px;line-height:.85;display:inline-block;transform:skewX(-11deg);background:linear-gradient(180deg,#F6DFA6,var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent;align-self:flex-start}
+.day .when{font-size:14px;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
+.day h3{font-family:var(--f-display);font-weight:800;font-size:24px;margin-top:4px}
+.day .for{color:var(--gold);font-size:15px}
+.day ul{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.day li{padding-left:20px;position:relative;font-size:15px;color:var(--muted)}
+.day li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--red);transform:rotate(45deg)}
+.day.opt{background:transparent;border:1px dashed rgba(227,192,122,.4)}
+.flag{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--gold);color:var(--night);padding:5px 12px;border-radius:var(--pill)}
+
+/* 12. Спикеры */
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.sp{background:var(--card);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.sp .ph{aspect-ratio:4/5;position:relative;background:radial-gradient(70% 60% at 50% 40%,rgba(200,38,45,.35),var(--card-2))}
+.sp .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+.sp .ph .ini{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:64px;color:var(--gold);transform:skewX(-11deg)}
+.sp .nm{margin:-22px 14px 0;position:relative;z-index:2;transform:skewX(-14deg);background:linear-gradient(90deg,var(--red-deep),var(--red));padding:9px 14px;text-align:center}
+.sp .nm span{display:block;transform:skewX(14deg);font-family:var(--f-display);font-weight:600;font-size:15px;color:#FFFFFF}
+.sp.secret .nm{background:linear-gradient(90deg,#6E5A24,var(--gold-deep))}
+.sp .role{padding:16px 20px 0;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--gold)}
+.sp p{padding:8px 20px 24px;font-size:15px;color:var(--muted)}
+
+/* 13. Результаты */
+.res-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.res-head .sec-title{margin:0;text-align:left}
+.res-head small{color:var(--soft);font-size:14px}
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:40px;padding-left:max(var(--gut),calc((100vw - var(--wrap))/2));padding-right:var(--gut-r);padding-bottom:18px;scrollbar-color:var(--red) var(--card)}
+.case{scroll-snap-align:start;flex:0 0 310px;background:var(--card);border-radius:var(--r);padding:28px 26px;display:flex;flex-direction:column;gap:14px;min-height:360px}
+.case .was{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--soft)}
+.case .was b{display:block;font-size:17px;text-transform:none;letter-spacing:0;color:var(--text);font-weight:500;margin-top:6px}
+.case .now{margin-top:auto;border-top:1px solid var(--line);padding-top:16px}
+.case .now b{display:block;font-family:var(--f-display);font-weight:900;font-size:30px;color:var(--gold);line-height:1}
+.case .now span{font-size:14px;color:var(--muted)}
+.case .name{font-weight:700;color:var(--red-hi)}
+.note{margin-top:22px;color:var(--soft);font-size:14px;max-width:70ch}
+
+/* 14. Доверие */
+.qs{list-style:none;margin:56px auto 0;padding:0;max-width:900px;display:flex;flex-direction:column;gap:12px;counter-reset:q}
+.qs li{counter-increment:q;background:var(--card);border-radius:var(--r);padding:22px 26px;display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center}
+.qs li::before{content:counter(q);font-family:var(--f-display);font-weight:900;font-size:36px;color:var(--gold);transform:skewX(-11deg)}
+.qs b{display:block;font-size:19px;font-weight:700}
+.qs span{display:block;margin-top:2px;font-size:15px;color:var(--muted)}
+.quote{max-width:760px;margin:44px auto 0;text-align:center;font-size:clamp(19px,2vw,24px);line-height:1.45;color:var(--text)}
+.quote cite{display:block;margin-top:12px;font-style:normal;font-size:14px;color:var(--gold);letter-spacing:.05em;text-transform:uppercase}
+
+/* 15. Что получите + приз */
+.get-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
+.get-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.get-list li{background:var(--card);border-radius:var(--r);padding:22px 24px;display:flex;gap:16px;align-items:center;font-size:18px;font-weight:500}
+.get-list li::before{content:"";flex:0 0 12px;height:12px;background:var(--gold);transform:rotate(45deg)}
+.prize{border-radius:var(--r);padding:40px 36px;background:radial-gradient(80% 80% at 70% 20%,rgba(227,192,122,.25),transparent 60%),linear-gradient(160deg,var(--red-deep),#4A0F13);display:flex;flex-direction:column;justify-content:center;gap:12px}
+.prize .lbl{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#FBE3E1}
+.prize b{font-family:var(--f-display);font-weight:900;font-size:clamp(48px,6vw,84px);line-height:.9;display:inline-block;transform:skewX(-11deg);background:linear-gradient(180deg,#FFF0C8,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;align-self:flex-start}
+.prize p{color:#FBE3E1;font-size:16px}
+.stub{border:1px dashed var(--gold);color:var(--gold);padding:2px 8px;border-radius:8px;font-size:13px}
+
+/* 16. Вопросы */
+.faq-list{max-width:900px;margin:56px auto 0;display:flex;flex-direction:column;gap:10px}
+details{background:var(--card);border-radius:var(--r);padding:0 26px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding-block:22px;font-size:19px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:50%;background:var(--red);color:#FFFFFF;font-size:22px;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details .a{padding-bottom:22px;color:var(--muted);max-width:66ch}
+
+/* 17. Финал */
+.final{background:radial-gradient(60% 70% at 50% 30%,rgba(200,38,45,.28),transparent 70%),var(--night);padding-block:120px 80px;text-align:center}
+.final-q{max-width:24ch;margin:0 auto;font-family:var(--f-display);font-weight:800;font-size:clamp(24px,3.4vw,42px);line-height:1.2}
+.final-q span{color:var(--gold)}
+.final-meta{margin-top:18px;color:var(--soft);font-size:15px;letter-spacing:.04em;text-transform:uppercase}
+.final .apply-form{max-width:760px;margin:44px auto 0;text-align:left;background:var(--stage);padding:28px;border-radius:calc(var(--r) + 6px);border:1px solid var(--line)}
+footer{background:var(--night);border-top:1px solid var(--line);color:var(--soft);padding-block:40px 48px;font-size:13px}
+.foot{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.foot img{height:56px;width:auto;display:block}
+
+/* Брейкпоинты */
+@media (max-width:1080px){
+  .road{grid-template-columns:repeat(3,1fr)}
+  .road li:not(:last-child)::after{display:none}
+  .sp-grid{grid-template-columns:1fr 1fr}
+  .days{grid-template-columns:1fr}
+  .top nav{display:none}
+}
+@media (max-width:820px){
+  body{font-size:16px}
+  .sec{padding-block:80px}
+  .top-in{padding:8px 8px 8px 14px}
+  .top-in img{height:38px}
+  .top .pill{min-height:44px;padding:0 16px;font-size:12px}
+  .hero{padding-top:100px}
+  .hero-stage{grid-template-columns:1fr;margin-top:-10px}
+  .hero-photo{grid-column:1;max-width:420px;margin:0 auto;width:100%}
+  .hero-side{display:none}
+  .hero-bottom{margin-top:-110px}
+  .tags{gap:8px}
+  .tag{padding:9px 10px}
+  .about-grid{grid-template-columns:1fr}
+  .about-ph{min-height:0;height:280px}
+  .about-ph.r{display:none}
+  .about-ph.l{order:2}
+  .about-txt{font-size:18px}
+  .invite .video{margin-top:32px}
+  .play{width:86px;height:86px;margin:-43px 0 0 -43px}
+  .play::after{border-left-width:26px;border-top-width:16px;border-bottom-width:16px}
+  .road{grid-template-columns:1fr;margin-top:40px}
+  .why-grid{grid-template-columns:1fr;gap:32px;margin-top:40px}
+  .who-list{grid-template-columns:1fr;margin-top:40px}
+  .who-list li{padding:26px 24px 28px}
+  .who-list h3{font-size:24px}
+  .num{width:54px;height:54px;font-size:20px}
+  .split,.paths{grid-template-columns:1fr}
+  .split{margin-top:40px}
+  .apply{padding-block:56px}
+  .apply-in{grid-template-columns:1fr;gap:24px}
+  .apply-form{grid-template-columns:1fr}
+  .days{margin-top:40px}
+  .sp-grid{gap:12px;margin-top:40px}
+  .sp .nm span{font-size:13px}
+  .sp .role{padding:14px 14px 0;font-size:12px}
+  .sp p{padding:6px 14px 18px;font-size:14px}
+  .case{flex-basis:82vw;min-height:320px}
+  .qs li{grid-template-columns:44px 1fr;padding:18px 18px}
+  .qs li::before{font-size:28px}
+  .get-grid{grid-template-columns:1fr}
+  .prize{padding:30px 24px}
+  .faq-list{margin-top:40px}
+  details{padding:0 18px}
+  summary{font-size:17px}
+  .final{padding-block:80px 56px}
+  .final .apply-form{padding:20px}
+  .foot{grid-template-columns:1fr}
+}
+@media (max-width:430px){
+  .tags{grid-template-columns:1fr}
+  .sp-grid{grid-template-columns:1fr}
+  .sp .ph{aspect-ratio:16/12}
+  .top .pill span.long{display:none}
+}
+</style>
+
+<!-- ШАПКА -->
+<div class="top">
+  <div class="top-in">
+    <a href="#top" aria-label="Наверх"><img src="img/logo-academy-gold.png" alt="Бизнес-академия «Золотые Драконы»" width="148" height="92"></a>
+    <nav aria-label="Разделы"><a href="#about">О форуме</a><a href="#program">Программа</a><a href="#speakers">Спикеры</a><a href="#results">Истории</a><a href="#faq">Вопросы</a></nav>
+    <a class="pill pill-main" href="#register"><span class="long">Зарегистрироваться</span><span aria-hidden="true">→</span></a>
+  </div>
+</div>
+
+<!-- 1. ПЕРВЫЙ ЭКРАН -->
+<header class="hero band" id="top">
+  <div class="wrap">
+    <div class="hero-title">
+      <h1><span class="tt">Деньги.</span><span class="ribbon"><span>Международный онлайн бизнес-форум</span></span><span class="tt"><span class="gd">Энергия.</span></span><span class="tt">Масштаб.</span></h1>
+    </div>
+    <div class="hero-stage">
+      <div class="hero-side l"><b>14·15·18</b><span>ноября, начало в 11:00 по Москве</span></div>
+      <div class="hero-photo"><div class="ring" aria-hidden="true"></div><img src="img/vika-portrait.jpg" alt="Виктория Иванова, основатель форума"></div>
+      <div class="hero-side r"><b>0 ₽</b><span>участие бесплатное, из любой страны</span></div>
+    </div>
+    <div class="hero-bottom">
+      <div class="tags" aria-label="Спикеры">
+        <div class="tag"><span>Виктория Иванова</span></div>
+        <div class="tag"><span>Елена Кондратович</span></div>
+        <div class="tag"><span>Татьяна Артемова</span></div>
+        <div class="tag q"><span>Спикер-сюрприз</span></div>
+      </div>
+      <div class="hero-btns">
+        <a class="pill pill-main" href="#register">Зарегистрироваться на форум <svg viewBox="0 0 12 20" aria-hidden="true"><path d="M2 2l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg></a>
+        <a class="pill pill-dark" href="#program">Программа форума <svg viewBox="0 0 12 20" aria-hidden="true"><path d="M2 2l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg></a>
+      </div>
+      <p class="hero-note">Три дня, чтобы понять, куда сейчас уходят деньги и как в них зайти, даже без опыта в бизнесе</p>
+    </div>
+  </div>
+</header>
+
+<!-- 2. БЕГУЩАЯ СТРОКА -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>14–15 ноября</span><i>✦</i><span>онлайн</span><i>✦</i><span>бесплатно</span><i>✦</i><span>призы 100 000 ₽</span><i>✦</i>
+    <span>14–15 ноября</span><i>✦</i><span>онлайн</span><i>✦</i><span>бесплатно</span><i>✦</i><span>призы 100 000 ₽</span><i>✦</i>
+  </div>
+</div>
+
+<!-- 3. О ФОРУМЕ -->
+<section class="sec about band" id="about">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">О форуме</span></h2>
+    <div class="about-grid" style="margin-top:48px">
+      <div class="about-ph l"><img src="img/vika-shanghai.jpg" alt="Виктория Иванова в Шанхае"></div>
+      <div class="about-txt">
+        <p class="em">«Деньги. Энергия. Масштаб» — это трёхдневный онлайн-форум о деньгах в мире, который меняется быстрее, чем мы успеваем к нему привыкнуть.</p>
+        <p>Здесь без красивых обещаний разбирают, куда сейчас уходят деньги, почему старые способы зарабатывать работают всё хуже и на что можно опереться уже сегодня.</p>
+        <p class="em">Три дня. Четыре спикера. Один общий вопрос: где ваше место в новой экономике.</p>
+        <a class="pill pill-main" href="#register">Посетить форум <svg viewBox="0 0 12 20" aria-hidden="true"><path d="M2 2l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg></a>
+      </div>
+      <div class="about-ph r"><img src="img/vika-sea.jpg" alt="Виктория Иванова у моря"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. ПРИГЛАШЕНИЕ -->
+<section class="sec invite band">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Приглашение <span class="hl">Виктории Ивановой</span></span></h2>
+    <div class="video">
+      <!-- ЗАГЛУШКА: видео-приглашение Виктории (ссылка или файл) -->
+      <img src="img/vika-flowers.jpg" alt="">
+      <button class="play" type="button" aria-label="Смотреть приглашение" id="playInvite"></button>
+      <span class="cap">Видео-приглашение появится здесь</span>
+    </div>
+  </div>
+</section>
+
+<!-- 5. УЗНАВАНИЕ -->
+<section class="sec alt band" aria-label="С чего всё начинается">
+  <div class="recog-in">
+    <p class="recog-big">Многие сегодня работают больше, устают сильнее и берут на себя больше ответственности. <em>А доход, свобода и качество жизни стоят на месте.</em></p>
+    <div class="recog-turn">
+      <b>Дело не в вас. Изменился мир.</b>
+      <p>В найме нельзя работать в два раза больше и получать в два раза больше. Деньги создаются не трудоголизмом, а идеей. И важно оказаться в нужное время в нужном месте.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ДЕНЬГИ ПЕРЕХОДЯТ -->
+<section class="sec band">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Деньги не исчезают. <span class="hl">Они переходят</span></span></h2>
+    <p class="lead">Каждый раз большинство говорило «не верю». А через несколько лет эти же люди говорили «жаль, что не начал раньше».</p>
+    <ol class="road" aria-label="Куда переходили деньги">
+      <li><span class="yr">XX век</span><b>Нефть</b><p>Богатели те, кто первым зашёл в добычу и переработку.</p></li>
+      <li><span class="yr">90-е — 2000-е</span><b>Недвижимость</b><p>Квартира как главный способ сохранить и умножить деньги.</p></li>
+      <li><span class="yr">2000-е — 2010-е</span><b>Интернет</b><p>Сайты, соцсети, онлайн-сервисы.</p></li>
+      <li><span class="yr">2010-е — 2020-е</span><b>Маркетплейсы</b><p>Продавать стало можно, не открывая магазин.</p></li>
+      <li class="now"><span class="yr">сейчас</span><b>Здоровье и долголетие</b><p>Биохакинг, wellness, технологии энергии. Рынок растёт вместе с желанием людей жить дольше и лучше.</p></li>
+    </ol>
+    <p class="shift-say">На форуме покажем, как зайти в эту волну, пока большинство ещё только присматривается.</p>
+  </div>
+</section>
+
+<!-- ЗАЯВКА 1 -->
+<section class="apply band" aria-labelledby="f1-t">
+  <div class="apply-in">
+    <div><h2 id="f1-t"><span class="tt">Хотите увидеть эту волну <span class="gd">изнутри?</span></span></h2><p>Оставьте заявку, и мы пришлём ссылку на все дни форума. Участие бесплатное.</p></div>
+    <form class="apply-form" novalidate>
+      <div class="fld"><label for="f1-name">Имя</label><input id="f1-name" name="name" autocomplete="given-name" placeholder="Как к вам обращаться"></div>
+      <div class="fld"><label for="f1-tel">Телефон или Telegram</label><input id="f1-tel" name="contact" autocomplete="tel" placeholder="+7… или @ник"></div>
+      <button class="pill pill-main" type="submit">Хочу на форум</button>
+      <label class="agree"><input type="checkbox" name="agree"> Согласен(на) на обработку персональных данных <!-- ЗАГЛУШКА: ссылка на политику --></label>
+      <p class="err" role="alert" hidden></p>
+      <div class="done" hidden><b>Заявка принята</b><span>Мы пришлём ссылку на форум и напомним перед началом эфира.</span></div>
+    </form>
+  </div>
+</section>
+
+<!-- 8. КОМУ ПОДОЙДЁТ -->
+<section class="sec band" id="who">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Кому подойдёт <span class="hl">форум</span></span></h2>
+    <ul class="who-list">
+      <li><span class="num">01</span><h3>Людям в найме</h3><p>Тем, кто хочет второй доход, не увольняясь и не рискуя накоплениями</p><small>Заберёте модель, которую можно начать параллельно с работой</small></li>
+      <li><span class="num">02</span><h3>Тем, кто хочет работать удалённо</h3><p>Не быть привязанными к офису и городу</p><small>Заберёте бизнес, который ведётся с телефона из любой страны</small></li>
+      <li><span class="num">03</span><h3>Специалистам beauty, wellness и здоровья</h3><p>Новое направление рядом с тем, что вы уже знаете</p><small>Заберёте способ получать доход сверх своих часов</small></li>
+      <li><span class="num">04</span><h3>Фрилансерам и экспертам</h3><p>Перестать продавать только своё время</p><small>Заберёте модель, где доход растёт не от количества ваших часов</small></li>
+      <li><span class="num">05</span><h3>Предпринимателям и каждому, кто ищет не просто подработку, а свой масштаб</h3><p>Рост без склада, логистики и найма</p><small>Заберёте готовую систему, которую можно запустить рядом с основным делом</small></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 9. МОДЕЛЬ -->
+<section class="sec alt band" id="model">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Новая бизнес-модель <span class="gd">на пальцах</span></span></h2>
+    <p class="lead">Бизнес по франшизе на рынке здоровья и долголетия. Большую часть работы берёт на себя компания, вы рассказываете людям об идее.</p>
+    <div class="split">
+      <div><span class="k">компания</span><h3>Берёт на себя</h3><ul><li>Производство продукта</li><li>Склад и доставку до двери</li><li>Платформу и выплаты</li></ul></div>
+      <div class="you"><span class="k" style="color:#FBE3E1">вы</span><h3>Делаете</h3><ul><li>Рассказываете людям об идее и продукте</li><li>Работаете по готовым шагам с наставником</li><li>Растите свою команду партнёров</li></ul></div>
+      <div><span class="k">результат</span><h3>Получаете</h3><ul><li>Процент с продаж: своих и своей команды</li><li>Свободу места и времени</li><li>Старт без огромных вложений: продукт для себя, франшиза бесплатно</li></ul></div>
+    </div>
+    <div class="paths">
+      <div class="path"><span class="tg">офлайн</span><b>Офис в своём городе</b><p>Открываете представительство в своём регионе или стране, компания платит процент от его оборота.</p></div>
+      <div class="path"><span class="tg">онлайн</span><b>Платформа в 70 странах</b><p>Человек из любой точки мира заказывает продукт до двери, вы получаете свой процент.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗАЯВКА 2 -->
+<section class="apply band" aria-labelledby="f2-t">
+  <div class="apply-in">
+    <div><h2 id="f2-t"><span class="tt">Разберём модель <span class="gd">с цифрами</span> 14 ноября</span></h2><p>Как войти, откуда доход и сколько это стоит. Оставьте заявку, чтобы не пропустить.</p></div>
+    <form class="apply-form" novalidate>
+      <div class="fld"><label for="f2-name">Имя</label><input id="f2-name" name="name" autocomplete="given-name" placeholder="Как к вам обращаться"></div>
+      <div class="fld"><label for="f2-tel">Телефон или Telegram</label><input id="f2-tel" name="contact" autocomplete="tel" placeholder="+7… или @ник"></div>
+      <button class="pill pill-main" type="submit">Записаться бесплатно</button>
+      <label class="agree"><input type="checkbox" name="agree"> Согласен(на) на обработку персональных данных <!-- ЗАГЛУШКА: ссылка на политику --></label>
+      <p class="err" role="alert" hidden></p>
+      <div class="done" hidden><b>Заявка принята</b><span>Мы пришлём ссылку на форум и напомним перед началом эфира.</span></div>
+    </form>
+  </div>
+</section>
+
+<!-- 10. ПРОГРАММА -->
+<section class="sec band" id="program">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Программа <span class="hl">форума</span></span></h2>
+    <div class="days">
+      <article class="day">
+        <span class="day-num">14</span><span class="when">ноября · суббота · 11:00 МСК</span>
+        <h3>Бизнес-форум</h3><p class="for">Для всех, кто ищет, где сейчас деньги</p>
+        <ul><li>Куда уходят деньги и почему растёт рынок биохакинга и долголетия</li><li>Как устроена модель: откуда доход, как войти, сколько это стоит</li><li>За какое время реально выйти на первые результаты</li><li>Истории людей, которые начинали так же, как вы</li></ul>
+      </article>
+      <article class="day">
+        <span class="day-num">15</span><span class="when">ноября · воскресенье · 11:00 МСК</span>
+        <h3>День клиента</h3><p class="for">Для тех, кому важны энергия и ресурс, свои и близких</p>
+        <ul><li>Врачи и эксперты о технологиях восстановления и активном долголетии</li><li>Что делать уже сейчас, чтобы дольше оставаться энергичными и активными</li><li>Вопрос врачу в эфире или заранее</li></ul>
+      </article>
+      <article class="day opt">
+        <span class="day-num">18</span><span class="when">ноября · среда · 11:00 МСК</span><span class="flag">для тех, кто решит начать</span>
+        <h3>Запуск с практикой</h3>
+        <ul><li>Первые шаги по готовой инструкции</li><li>Наставник и команда</li><li>Готовые материалы: презентации, шаблоны, помощник на искусственном интеллекте</li><li>Дальше 10 дней игры «Лёгкий старт»: каждое утро задание на пару часов</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 11. СПИКЕРЫ -->
+<section class="sec alt band" id="speakers">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Спикеры</span></h2>
+    <div class="sp-grid">
+      <article class="sp"><div class="ph"><img src="img/vika-portrait.jpg" alt="Виктория Иванова"></div><div class="nm"><span>Виктория Иванова</span></div><span class="role">основатель форума · финансист</span><p>31 год в инвестициях. Была главбухом и финдиректором, строила свои супермаркеты и автосалоны. Четыре раза полностью меняла финансовую модель своей жизни.</p></article>
+      <article class="sp"><div class="ph"><span class="ini">ЕК</span><!-- ЗАГЛУШКА: фото Елены Кондратович --></div><div class="nm"><span>Елена Кондратович</span></div><span class="role">бизнес-тренер · предприниматель</span><p>Больше 13 лет руководила в банке и строила партнёрский бизнес. Сегодня её бизнес работает больше чем в 10 странах.</p></article>
+      <article class="sp"><div class="ph"><span class="ini">ТА</span><!-- ЗАГЛУШКА: фото Татьяны Артемовой --></div><div class="nm"><span>Татьяна Артемова</span></div><span class="role">эксперт и продюсер</span><p>Пришла в эту модель, чтобы усилить свои проекты. За полтора месяца вышла на один из старших статусов в компании.</p></article>
+      <article class="sp secret"><div class="ph"><span class="ini">?</span></div><div class="nm"><span>Спикер-сюрприз</span></div><span class="role">имя откроем перед стартом</span><p>Практик с реальными результатами в этой модели.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 12. ИСТОРИИ -->
+<section class="sec" id="results">
+  <div class="wrap band res-head">
+    <h2 class="sec-title"><span class="tt">С чего <span class="gd">начинали</span></span></h2>
+    <small>листайте вбок →</small>
+  </div>
+  <div class="rail" tabindex="0" aria-label="Истории участников">
+    <article class="case"><p class="was">было<b>Воспитатель в ясельной группе, свободных денег на старт не было</b></p><div class="now"><b>1 месяц</b><span>чтобы окупить вложения</span></div><p class="name">Елена Дрыгваль</p></article>
+    <article class="case"><p class="was">было<b>Московский риелтор, считал биохакинг пустой тратой времени</b></p><div class="now"><b>170 000 ₽</b><span>доход за первый месяц</span></div><p class="name">Артур Романов</p></article>
+    <article class="case"><p class="was">было<b>Думали, что «это несерьёзно». Пришли только за продуктом</b></p><div class="now"><b>Второй доход</b><span>для семьи, и их партнёры уже выходят на свои результаты</span></div><p class="name">Ульяна и Сергей Воробьёвы</p></article>
+    <article class="case"><p class="was">было<b>Мастер телесных практик, не хотела менять профессию</b></p><div class="now"><b>380 000 ₽</b><span>чек, не меняя профессию</span></div><p class="name">Наталья Абашева</p></article>
+    <article class="case"><p class="was">было<b>39 лет, слушала эфиры и сомневалась</b></p><div class="now"><b>194 000 ₽</b><span>за первый месяц</span></div><p class="name">Анастасия Сударикова</p></article>
+    <article class="case"><p class="was">было<b>Изучила продукт и сразу включилась в систему</b></p><div class="now"><b>50 000 ₽</b><span>за первые четыре дня</span></div><p class="name">Наталья Посиделова</p></article>
+  </div>
+  <p class="wrap band note">Это результаты конкретных людей, опубликованные с их согласия. Они не обещают такой же доход вам: результат зависит от ваших действий, времени и решений.</p>
+</section>
+
+<!-- 13. ДОВЕРИЕ -->
+<section class="sec alt band">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Вопросы, которые стоит задать <span class="hl">любому бизнесу</span></span></h2>
+    <p class="lead">И нам тоже. На форуме ответим на каждый с цифрами. Если ответы не убедят, вы уйдёте с новыми знаниями.</p>
+    <ol class="qs">
+      <li><div><b>Что именно я покупаю?</b><span>Какой продукт, кто производитель, есть ли повторные покупки.</span></div></li>
+      <li><div><b>Откуда появится мой доход?</b><span>Из чего складывается процент и кто его платит.</span></div></li>
+      <li><div><b>Сколько нужно вложить на старт?</b><span>Точная сумма и что в неё входит.</span></div></li>
+      <li><div><b>Сколько времени это займёт?</b><span>Сколько часов в день и когда реально увидеть первые деньги.</span></div></li>
+      <li><div><b>Что, если не получится?</b><span>Что остаётся у вас на руках и как выйти.</span></div></li>
+    </ol>
+    <blockquote class="quote">«Если я не понимаю, как войти, откуда прибыль и как выйти, я не инвестирую. Я просто занимаюсь благотворительностью».<cite>Виктория Иванова</cite></blockquote>
+  </div>
+</section>
+
+<!-- ЗАЯВКА 3 -->
+<section class="apply band" aria-labelledby="f3-t">
+  <div class="apply-in">
+    <div><h2 id="f3-t"><span class="tt">Задайте эти вопросы <span class="gd">в прямом эфире</span></span></h2><p>Регистрация бесплатная, ссылку пришлём перед стартом.</p></div>
+    <form class="apply-form" novalidate>
+      <div class="fld"><label for="f3-name">Имя</label><input id="f3-name" name="name" autocomplete="given-name" placeholder="Как к вам обращаться"></div>
+      <div class="fld"><label for="f3-tel">Телефон или Telegram</label><input id="f3-tel" name="contact" autocomplete="tel" placeholder="+7… или @ник"></div>
+      <button class="pill pill-main" type="submit">Зарегистрироваться</button>
+      <label class="agree"><input type="checkbox" name="agree"> Согласен(на) на обработку персональных данных <!-- ЗАГЛУШКА: ссылка на политику --></label>
+      <p class="err" role="alert" hidden></p>
+      <div class="done" hidden><b>Заявка принята</b><span>Мы пришлём ссылку на форум и напомним перед началом эфира.</span></div>
+    </form>
+  </div>
+</section>
+
+<!-- 14. ЧТО ПОЛУЧИТЕ -->
+<section class="sec band">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Что вы получите</span></h2>
+    <div class="get-grid">
+      <ul class="get-list">
+        <li>Три прямых эфира с четырьмя спикерами</li>
+        <li>Запись всех дней на 30 дней</li>
+        <li>Вопрос врачу в День клиента</li>
+        <li>Участие в розыгрыше призов</li>
+      </ul>
+      <div class="prize">
+        <span class="lbl">розыгрыш в прямом эфире</span>
+        <b>100 000 ₽</b>
+        <p>Призовой фонд: приборы и продукты для энергии и восстановления. Разыгрываем среди тех, кто будет онлайн.</p>
+        <span class="stub">ЗАГЛУШКА: правила розыгрыша</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15. ВОПРОСЫ -->
+<section class="sec alt band" id="faq">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="tt">Частые <span class="hl">вопросы</span></span></h2>
+    <div class="faq-list">
+      <details><summary>Сколько стоит участие?</summary><div class="a">Нисколько. Все дни форума и запись бесплатны.</div></details>
+      <details><summary>Что я получу?</summary><div class="a">Понимание, куда сейчас уходят деньги, разбор конкретной бизнес-модели с цифрами, истории людей, которые уже в ней, ответы врачей в День клиента и шанс выиграть призы.</div></details>
+      <details><summary>Будут ли записи?</summary><div class="a">Да. Запись всех эфиров доступна 30 дней. В розыгрыше участвуют только те, кто смотрит в прямом эфире.</div></details>
+      <details><summary>Нужен ли опыт в бизнесе?</summary><div class="a">Нет. Среди тех, кто уже в этой модели, есть воспитатель, риелтор, специалисты по здоровью. Для тех, кто решит начать, есть пошаговая программа и наставник.</div></details>
+      <details><summary>Подойдёт ли форум, если я в найме?</summary><div class="a">Да. Эту модель можно начинать параллельно с работой, без увольнения. На форуме покажем, сколько времени это занимает.</div></details>
+      <details><summary>Это сетевой бизнес?</summary><div class="a">Это партнёрский бизнес по франшизе. В его основе модель сетевого бизнеса: доход складывается из ваших продаж и продаж вашей команды. Подробно, с цифрами, разбираем 14 ноября, чтобы вы сами решили, подходит ли она вам.</div></details>
+      <details><summary>Что будет 15 ноября?</summary><div class="a">День клиента: врачи и эксперты расскажут о технологиях восстановления и активном долголетии и ответят на вопросы. Это не заменяет приём у вашего врача и не является медицинской рекомендацией.</div></details>
+      <details><summary>Что будет 18 ноября?</summary><div class="a">Запуск с практикой для тех, кто после форума решит начать: первые шаги, наставник, готовые материалы. Если вы не решили, на этот день можно не приходить.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 16. ФИНАЛ -->
+<section class="final band" id="register">
+  <p class="final-q">Этот форум для тех, кто ищет не просто подработку. <span>А новую идею, энергию и свой масштаб.</span></p>
+  <p class="final-meta">14, 15 и 18 ноября · 11:00 МСК · онлайн · бесплатно</p>
+  <form class="apply-form" novalidate>
+    <div class="fld"><label for="f4-name">Имя</label><input id="f4-name" name="name" autocomplete="given-name" placeholder="Как к вам обращаться"></div>
+    <div class="fld"><label for="f4-tel">Телефон или Telegram</label><input id="f4-tel" name="contact" autocomplete="tel" placeholder="+7… или @ник"></div>
+    <button class="pill pill-main" type="submit">Зарегистрироваться на форум</button>
+    <label class="agree"><input type="checkbox" name="agree"> Согласен(на) на обработку персональных данных <!-- ЗАГЛУШКА: ссылка на политику --></label>
+    <p class="err" role="alert" hidden></p>
+    <div class="done" hidden><b>Заявка принята</b><span>Мы пришлём ссылку на форум и напомним перед началом эфира.</span></div>
+  </form>
+</section>
+
+<footer class="band">
+  <div class="foot">
+    <img src="img/logo-academy-gold.png" alt="Бизнес-академия «Золотые Драконы»" width="90" height="56">
+    <p>Международный онлайн бизнес-форум «Деньги. Энергия. Масштаб» · 2026. Результаты участников не являются обещанием дохода. Информация о продуктах не является медицинской рекомендацией. <span class="stub">ЗАГЛУШКА: политика конфиденциальности, данные организатора</span></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ЗАГЛУШКА: адрес, куда уходят заявки (форма Tilda, вебхук CRM, бот). Пока пусто, заявки никуда не отправляются.
+  var ENDPOINT='';
+  document.querySelectorAll('.apply-form').forEach(function(f){
+    var err=f.querySelector('.err'), done=f.querySelector('.done'), btn=f.querySelector('button');
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=f.elements.name, contact=f.elements.contact, agree=f.elements.agree, msg='';
+      [name,contact].forEach(function(i){i.removeAttribute('aria-invalid');});
+      if(!name.value.trim()){name.setAttribute('aria-invalid','true');msg='Напишите, как к вам обращаться.';}
+      else if(contact.value.replace(/[^0-9a-zA-Z_@]/g,'').length<5){contact.setAttribute('aria-invalid','true');msg='Укажите телефон или ник в Telegram, чтобы мы прислали ссылку.';}
+      else if(!agree.checked){msg='Поставьте галочку согласия на обработку данных.';}
+      if(msg){err.textContent=msg;err.hidden=false;return;}
+      err.hidden=true; btn.disabled=true; var label=btn.textContent; btn.textContent='Отправляем…';
+      var data={name:name.value.trim(),contact:contact.value.trim(),page:location.href};
+      var send=ENDPOINT?fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(function(r){if(!r.ok)throw 0;}):new Promise(function(res){setTimeout(res,500);});
+      send.then(function(){
+        if(!ENDPOINT){done.querySelector('span').textContent='Это макет: отправку заявок подключим перед запуском.';}
+        done.hidden=false;
+      }).catch(function(){
+        err.textContent='Не получилось отправить. Проверьте интернет и попробуйте ещё раз.';err.hidden=false;
+      }).finally(function(){btn.disabled=false;btn.textContent=label;});
+    });
+  });
+  var p=document.getElementById('playInvite');
+  if(p){p.addEventListener('click',function(){var c=p.parentNode.querySelector('.cap');c.textContent='Видео добавим, как только пришлёте ролик';});}
+})();
+</script>
